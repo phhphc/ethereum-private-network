@@ -1,3 +1,4 @@
 node*/geth/
 .vscode
 .env
+static-nodes.json
