@@ -1,12 +1,11 @@
 include .env
 
-NET_ID=123454321
+NET_ID=58544
 
 ADDR_1=0x40f922b761f27a8fc38bd26e33af795930aee7a0
 ADDR_2=0x2adef4022acd11a9b8c1bd49e40134688063667d
 ADDR_3=0x2247BC77A8777326230aadC1F11ADD399CC52BC9
 ADDR_4=0x856A08fFC8f38f31748be2E0fB4AEb50476385D4
-ADDR_5=0x59f775Ba6690eD52164817884b5d342338630C91
 
 POA_FILE=genesis-poa.json
 POW_FILE=genesis-pow.json
@@ -32,48 +31,50 @@ PoW: $(POW_FILE) # initializing the Geth database (proof of work)
 	geth init --datadir node-4 $(POW_FILE)
 	geth init --datadir node-5 $(POW_FILE)
 
-bootnode: # generate a bootnode 
-	bootnode -nodekey ./.bootnode/boot.key -addr $(IP):30305
+boot:
+	bootnode -nodekey node-1/boot.key -addr $(IP):30303
 
-node1:
+bootnode: # generate a bootnode 
 	geth --datadir node-1 --networkid $(NET_ID) \
-		--unlock $(ADDR_1)  --password node-1/password.txt \
-		--mine --miner.threads=1 --miner.etherbase=$(ADDR_1) \
 		--nodekey node-1/boot.key \
 		--nat extip:$(IP) \
 		$(OPTION)
 
-node2:
+signer1:
 	geth --datadir node-2 --networkid $(NET_ID) \
+		--bootnodes $(ENODE_URL) \
 	  	--unlock $(ADDR_2) --password node-2/password.txt \
 		--mine --miner.threads=1 --miner.etherbase=$(ADDR_2) \
 		--nodekey node-2/boot.key \
-		--nat extip:$(IP) \
 		$(OPTION)
 
-node3:
+signer2:
 	geth --datadir node-3 --networkid $(NET_ID) \
+		--bootnodes $(ENODE_URL) \
 	  	--unlock $(ADDR_3) --password node-3/password.txt \
 		--mine --miner.threads=1 --miner.etherbase=$(ADDR_3) \
 		--nodekey node-3/boot.key \
+		$(OPTION)
+
+member1:
+	geth --datadir node-4 --networkid $(NET_ID) \
+		--http --http.addr $(IP) --http.corsdomain '*' \
+		--nodekey node-4/boot.key \
 		--nat extip:$(IP) \
 		$(OPTION)
 
-node4:
-	geth --datadir node-4 --networkid $(NET_ID) \
-		--bootnodes $(ENODE_URL) \
-		--port 30309 --authrpc.port 8554 \
-	  	--unlock $(ADDR_4) --password node-4/password.txt \
-		--mine --miner.threads=1 --miner.etherbase=$(ADDR_4) \
-		--nodekey node-4/boot.key \
-		--nat extip:$(IP) \
-		$(OPTION) 
 
-node5:
-	  	# --unlock $(ADDR_5) --password node-5/password.txt \
-		# --port 30310 --authrpc.port 8555 \
-	geth --datadir node-5 --networkid $(NET_ID) \
-		--http --http.addr $(IP) --http.corsdomain '*' \
-		--nodekey node-5/boot.key \
-		--nat extip:$(IP) \
-		$(OPTION) 
+services/geth-bootnode.env:
+	echo "DATA_DIR=$(shell pwd)/node-1" > services/geth-bootnode.env
+	echo "NET_ID=$(NET_ID)" >> services/geth-bootnode.env
+	echo "NODE_KEY=$(pwd)/node-1/boot.key" >> services/geth-bootnode.env
+	echo "IP=$(IP)" >> services/geth-bootnode.env
+
+install-bootnode: /usr/local/bin/geth services/geth-bootnode.env
+	sudo mv services/geth-bootnode.env /usr/lib/systemd/system
+	sudo cp services/geth-bootnode.service /usr/lib/systemd/system
+
+test: install-bootnode
+	sudo systemctl daemon-reload
+	sudo systemctl start geth-bootnode.service
+	sudo systemctl status geth-bootnode.service
