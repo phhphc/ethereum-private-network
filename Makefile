@@ -37,7 +37,6 @@ bootnode: # generate a bootnode
 
 node1:
 	geth --datadir node-1 --networkid $(NET_ID) \
-		--port 30306 --authrpc.port 8551 \
 		--unlock $(ADDR_1)  --password node-1/password.txt \
 		--mine --miner.threads=1 --miner.etherbase=$(ADDR_1) \
 		--nodekey node-1/boot.key \
@@ -46,7 +45,6 @@ node1:
 
 node2:
 	geth --datadir node-2 --networkid $(NET_ID) \
-		--port 30307 --authrpc.port 8552 \
 	  	--unlock $(ADDR_2) --password node-2/password.txt \
 		--mine --miner.threads=1 --miner.etherbase=$(ADDR_2) \
 		--nodekey node-2/boot.key \
@@ -55,7 +53,6 @@ node2:
 
 node3:
 	geth --datadir node-3 --networkid $(NET_ID) \
-		--port 30308 --authrpc.port 8553 \
 	  	--unlock $(ADDR_3) --password node-3/password.txt \
 		--mine --miner.threads=1 --miner.etherbase=$(ADDR_3) \
 		--nodekey node-3/boot.key \
@@ -73,9 +70,10 @@ node4:
 		$(OPTION) 
 
 node5:
+	  	# --unlock $(ADDR_5) --password node-5/password.txt \
+		# --port 30310 --authrpc.port 8555 \
 	geth --datadir node-5 --networkid $(NET_ID) \
-		--port 30310 --authrpc.port 8555 \
-	  	--unlock $(ADDR_5) --password node-5/password.txt \
+		--http --http.addr $(IP) --http.corsdomain '*' \
 		--nodekey node-5/boot.key \
 		--nat extip:$(IP) \
 		$(OPTION) 
