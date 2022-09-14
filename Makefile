@@ -51,6 +51,7 @@ signer2:
         --mine --miner.threads=1 --miner.etherbase=$(ADDR_3) \
         --nodekey node-3/boot.key \
         --nat extip:$(IP)
+		--light.serve 100 --txlookuplimit 0
 
 member1:
 	geth --datadir node-4 \
@@ -58,6 +59,7 @@ member1:
         --http --http.addr $(IP) --http.corsdomain '*' \
         --nodekey node-4/boot.key \
         --nat extip:$(IP) \
+		--syncmode light
 
 
 #################################
