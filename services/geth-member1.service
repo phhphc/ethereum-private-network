@@ -5,7 +5,7 @@ After=syslog.target network.target
 [Service]
 User=intern
 Group=intern
-WorkingDirectory=/home/intern
+# WorkingDirectory=/home/intern
 Type=simple
 EnvironmentFile=/usr/lib/systemd/system/geth.env
 
