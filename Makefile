@@ -63,16 +63,25 @@ member1:
 		--nat extip:$(IP) \
 		$(OPTION)
 
+GETH_ENV_FILE=services/geth.env
+INSTALL_DIR=/usr/lib/systemd/system
 
-services/geth-bootnode.env:
-	echo "DATA_DIR=$(shell pwd)/node-1" > services/geth-bootnode.env
-	echo "NET_ID=$(NET_ID)" >> services/geth-bootnode.env
-	echo "NODE_KEY=$(pwd)/node-1/boot.key" >> services/geth-bootnode.env
-	echo "IP=$(IP)" >> services/geth-bootnode.env
+geth-env:
+	echo "WORK_DIR=$(shell pwd)" > $(GETH_ENV_FILE)
+	echo "NET_ID=$(NET_ID)" >> $(GETH_ENV_FILE)
+	echo "IP=$(IP)" >> $(GETH_ENV_FILE)
+	echo "ADDR_1=$(ADDR_1)" >> $(GETH_ENV_FILE)
+	echo "ADDR_2=$(ADDR_2)" >> $(GETH_ENV_FILE)
+	echo "ADDR_3=$(ADDR_3)" >> $(GETH_ENV_FILE)
+	echo "ADDR_4=$(ADDR_4)" >> $(GETH_ENV_FILE)
+	echo "" >> $(GETH_ENV_FILE)
 
-install-bootnode: /usr/local/bin/geth services/geth-bootnode.env
-	sudo mv services/geth-bootnode.env /usr/lib/systemd/system
-	sudo cp services/geth-bootnode.service /usr/lib/systemd/system
+install-bootnode: /usr/local/bin/geth geth-env
+	sudo cp $(GETH_ENV_FILE) $(INSTALL_DIR)
+	sudo cp services/geth-bootnode.service $(INSTALL_DIR)
+	sudo cp services/geth-signer1.service $(INSTALL_DIR)
+	sudo cp services/geth-signer2.service $(INSTALL_DIR)
+	sudo cp services/geth-member1.service $(INSTALL_DIR)
 
 test: install-bootnode
 	sudo systemctl daemon-reload

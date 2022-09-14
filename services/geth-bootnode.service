@@ -5,12 +5,10 @@ After=syslog.target network.target
 [Service]
 User=intern
 Group=intern
-WorkingDirectory=/home/intern
+EnvironmentFile=/usr/lib/systemd/system/geth.env
 Type=simple
-EnvironmentFile=/usr/lib/systemd/system/geth-bootnode.env
 
-# ExecStart= /usr/local/bin/geth --datadir ${DATA_DIR} --networkid ${NET_ID} --nodekey ${NODE_KEY} --nat extip:${IP}
-ExecStart=pwd
+ExecStart= /usr/local/bin/geth --datadir ${WORK_DIR}/node-1 --networkid ${NET_ID} --nodekey ${WORK_DIR}/node-1/boot.key --nat extip:${IP}
 
 KillMode=process
 KillSignal=SIGINT
