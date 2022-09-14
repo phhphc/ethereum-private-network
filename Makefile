@@ -92,22 +92,22 @@ install: /usr/local/bin/geth geth-env
 # apply Geth Systemd service
 #################################
 
-apply-bootnode: install-bootnode
+apply-bootnode:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-bootnode.service
 	sudo systemctl status geth-bootnode.service
 
-apply-signer1: install-bootnode
+apply-signer1:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-signer1.service
 	sudo systemctl status geth-signer1.service
 
-apply-signer2: install-bootnode
+apply-signer2:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-signer2.service
 	sudo systemctl status geth-signer2.service
 
-apply-member1: install-bootnode
+apply-member1:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-member1.service
 	sudo systemctl status geth-member1.service
