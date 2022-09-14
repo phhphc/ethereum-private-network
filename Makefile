@@ -83,7 +83,22 @@ install-bootnode: /usr/local/bin/geth geth-env
 	sudo cp services/geth-signer2.service $(INSTALL_DIR)
 	sudo cp services/geth-member1.service $(INSTALL_DIR)
 
-test: install-bootnode
+test-bootnode: install-bootnode
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-bootnode.service
 	sudo systemctl status geth-bootnode.service
+
+test-signer1: install-bootnode
+	sudo systemctl daemon-reload
+	sudo systemctl start geth-signer1.service
+	sudo systemctl status geth-signer1.service
+
+test-signer2: install-bootnode
+	sudo systemctl daemon-reload
+	sudo systemctl start geth-signer2.service
+	sudo systemctl status geth-signer2.service
+
+test-mamber1: install-bootnode
+	sudo systemctl daemon-reload
+	sudo systemctl start geth-member1.service
+	sudo systemctl status geth-member1.service
