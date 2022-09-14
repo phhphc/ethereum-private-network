@@ -5,7 +5,7 @@ After=syslog.target network.target
 [Service]
 User=intern
 Group=intern
-WorkingDirectory=/home/intern
+# WorkingDirectory=/home/intern
 Type=simple
 EnvironmentFile=/usr/lib/systemd/system/geth.env
 
@@ -13,6 +13,7 @@ ExecStart= geth --datadir ${WORK_DIR}/node-2 --networkid $(NET_ID) \
 	  	--unlock $(ADDR_2) --password node-2/password.txt \
 		--mine --miner.threads=1 --miner.etherbase=$(ADDR_2) \
 		--nodekey node-2/boot.key \
+
 
 #ExecStart=pwd
 
