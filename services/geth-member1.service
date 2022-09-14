@@ -1,0 +1,26 @@
+[Unit]
+Description=Ethereum go client
+After=syslog.target network.target
+
+[Service]
+User=intern
+Group=intern
+WorkingDirectory=/home/intern
+Type=simple
+EnvironmentFile=/usr/lib/systemd/system/geth.env
+
+ExecStart= geth --datadir ${WORK_DIR}/node-4 --networkid $(NET_ID) \
+		--http --http.addr $(IP) --http.corsdomain '*' \
+		--nodekey ${WORK_DIR}/node-4/boot.key \
+		--nat extip:$(IP) \
+
+#ExecStart=pwd
+
+KillMode=process
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
