@@ -9,10 +9,10 @@ Group=intern
 Type=simple
 EnvironmentFile=/usr/lib/systemd/system/geth.env
 
-ExecStart= /usr/local/bin/geth --datadir ${WORK_DIR}/node-4 --networkid $(NET_ID) \
-		--http --http.addr $(IP) --http.corsdomain '*' \
+ExecStart= geth --datadir ${WORK_DIR}/node-4 --networkid ${NET_ID} \
+		--http --http.addr ${IP} --http.corsdomain '*' \
 		--nodekey ${WORK_DIR}/node-4/boot.key \
-		--nat extip:$(IP) \
+		--nat extip:${IP} \
 
 #ExecStart=pwd
 
