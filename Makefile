@@ -98,7 +98,7 @@ test-signer2: install-bootnode
 	sudo systemctl start geth-signer2.service
 	sudo systemctl status geth-signer2.service
 
-test-mamber1: install-bootnode
+test-member1: install-bootnode
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-member1.service
 	sudo systemctl status geth-member1.service
