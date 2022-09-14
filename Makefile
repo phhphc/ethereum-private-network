@@ -31,15 +31,13 @@ PoW: $(POW_FILE) # initializing the Geth database (proof of work)
 
 
 bootnode:
-	geth --verbosity 2 \
-    	--datadir node-1 \
+	geth --datadir node-1 \
     	--networkid $(NET_ID) \
     	--nodekey node-1/boot.key \
     	--nat extip:$(IP)
 
 signer1:
-	geth --verbosity 2 \
-        --datadir node-2 \
+	geth --datadir node-2 \
         --networkid $(NET_ID) \
         --unlock $(ADDR_2) --password node-2/password.txt \
         --mine --miner.threads=1 --miner.etherbase=$(ADDR_2) \
@@ -47,8 +45,7 @@ signer1:
         --nat extip:$(IP)
 
 signer2:
-	geth --verbosity 2 \
-        --datadir node-3 \
+	geth --datadir node-3 \
         --networkid $(NET_ID) \
         --unlock $(ADDR_3) --password node-3/password.txt \
         --mine --miner.threads=1 --miner.etherbase=$(ADDR_3) \
@@ -56,8 +53,7 @@ signer2:
         --nat extip:$(IP)
 
 member1:
-	geth --verbosity 2 \
-        --datadir node-4 \
+	geth --datadir node-4 \
         --networkid $(NET_ID) \
         --http --http.addr $(IP) --http.corsdomain '*' \
         --nodekey node-4/boot.key \
