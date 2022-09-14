@@ -9,7 +9,8 @@ Group=intern
 Type=simple
 EnvironmentFile=/usr/lib/systemd/system/geth.env
 
-ExecStart= /usr/local/bin/geth --datadir ${WORK_DIR}/node-3 --networkid ${NET_ID} \
+ExecStart= /usr/local/bin/geth \
+        --datadir ${WORK_DIR}/node-3 --networkid ${NET_ID} \
         --unlock ${ADDR_3} --password ${WORK_DIR}/node-3/password.txt \
         --mine --miner.threads=1 --miner.etherbase=${ADDR_3} \
         --nodekey ${WORK_DIR}/node-3/boot.key \

@@ -8,7 +8,11 @@ Group=intern
 EnvironmentFile=/usr/lib/systemd/system/geth.env
 Type=simple
 
-ExecStart= /usr/local/bin/geth --datadir ${WORK_DIR}/node-1 --networkid ${NET_ID} --nodekey ${WORK_DIR}/node-1/boot.key --nat extip:${IP}
+ExecStart= /usr/local/bin/geth \
+    --datadir ${WORK_DIR}/node-1 \
+    --networkid ${NET_ID} \
+    --nodekey ${WORK_DIR}/node-1/boot.key \
+    --nat extip:${IP}
 
 KillMode=process
 KillSignal=SIGINT
