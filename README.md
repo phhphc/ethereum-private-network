@@ -80,10 +80,43 @@ $ geth --config=<TOML-CONFIG-FILE>
 ```
 To override an option specified in the configuration file, specify the same option on the command line.
 
+## Run node in background with service in systemd
+```Systemd``` is a system and service manager for ```Linux```, compatible with SysV and LSB init scripts. Systemd provides [7]:
+- Aggressive parallelization capabilities
+- Uses socket and D-Bus activation for starting services
+- Offers on-demand starting of daemons, keeps track of processes using Linux cgroups
+- Supports snapshotting and restoring of the system state
+- Maintains mount and automount points
+- Implements an elaborate transactional dependency-based service control logic.
+
+The ```systemctl``` command is the primary tool to manage ```systemd```. It combines the functionality of SysVinit’s ```service``` and chkconfig commands into a single tool you can use to enable and disable services permanently or only for the current session.
+
+To setup geth node in service you need follow these step:
+1. Fristly, you have to copy ```geth``` to  ```/usr/local/bin/geth``` to avoid the permission error when use geth in service
+
+```sh
+$ sudo cp ~/go/bin/geth /usr/local/bin/geth
+```
+2. Next, you have to create a service file and move its to `/usr/lib/systemd/system`. In this repo, we have 4 node, so we create 4 service files for each node.
+```sh
+$ make install
+```
+3. Finally, we have 4 commands for 4 nodes respectively to run them in 4 servers.
+```sh
+$ make apply-bootnode
+$ make apply-signer1
+$ make apply-signer2
+$ make apply-member1
+```
+
+
+
+
 ## References
-- https://geth.ethereum.org/docs/interface/private-network
-- https://ethereum.stackexchange.com/questions/15541/how-to-add-new-sealer-in-geth-1-6-proof-of-authority
-- https://medium.com/shyft-network/understanding-ethereums-p2p-network-86eeaa3345
-- https://devblogs.microsoft.com/cse/2018/06/01/creating-private-ethereum-consortium-kubernetes/
-- https://consensys.net/docs/goquorum/en/latest/configure-and-manage/configure/use-configuration-file/
-- https://consensys.net/diligence/blog/2020/09/libp2p-multiaddr-enode-enr/
+- [1] https://geth.ethereum.org/docs/interface/private-network
+- [2] https://ethereum.stackexchange.com/questions/15541/how-to-add-new-sealer-in-geth-1-6-proof-of-authority
+- [3] https://medium.com/shyft-network/understanding-ethereums-p2p-network-86eeaa3345
+- [4] https://devblogs.microsoft.com/cse/2018/06/01/creating-private-ethereum-consortium-kubernetes/
+- [5] https://consensys.net/docs/goquorum/en/latest/configure-and-manage/configure/use-configuration-file/
+- [6] https://consensys.net/diligence/blog/2020/09/libp2p-multiaddr-enode-enr/
+- [7] https://docs.fedoraproject.org/en-US/quick-docs/understanding-and-administering-systemd/#:~:text=Systemd%20is%20a%20system%20and,Bus%20activation%20for%20starting%20services

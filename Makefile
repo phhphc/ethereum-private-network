@@ -50,7 +50,7 @@ signer2:
         --unlock $(ADDR_3) --password node-3/password.txt \
         --mine --miner.threads=1 --miner.etherbase=$(ADDR_3) \
         --nodekey node-3/boot.key \
-        --nat extip:$(IP)
+        --nat extip:$(IP) \
 		--light.serve 100 --txlookuplimit 0
 
 member1:
