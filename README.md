@@ -110,8 +110,6 @@ $ make apply-member1
 ```
 
 
-
-
 ## References
 - [1] https://geth.ethereum.org/docs/interface/private-network
 - [2] https://ethereum.stackexchange.com/questions/15541/how-to-add-new-sealer-in-geth-1-6-proof-of-authority
