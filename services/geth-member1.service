@@ -15,7 +15,7 @@ ExecStart=/usr/local/bin/geth \
         --http --http.addr ${IP} --http.corsdomain '*' \
         --nodekey ${WORK_DIR}/node-4/boot.key \
         --nat extip:${IP} \
-		--syncmode light
+        --syncmode light \
         --ulc.servers "enode://0901447d4e852b8915596dd79eb23985476478b35c8ecca85612cfc17b61204f7577de0dbbdaa3959f5840a449a28c9d59c1c9d4932da8cab023fa02eb2de9a3@10.148.0.114:30303"
 
 
