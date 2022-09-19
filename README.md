@@ -81,7 +81,7 @@ $ geth --config=<TOML-CONFIG-FILE>
 To override an option specified in the configuration file, specify the same option on the command line.
 
 ## Run node in background with service in systemd
-```Systemd``` is a system and service manager for ```Linux```, compatible with SysV and LSB init scripts. Systemd provides [7]:
+`Systemd` is a system and service manager for `Linux`, compatible with SysV and LSB init scripts. Systemd provides [7]:
 - Aggressive parallelization capabilities
 - Uses socket and D-Bus activation for starting services
 - Offers on-demand starting of daemons, keeps track of processes using Linux cgroups
@@ -89,7 +89,7 @@ To override an option specified in the configuration file, specify the same opti
 - Maintains mount and automount points
 - Implements an elaborate transactional dependency-based service control logic.
 
-The ```systemctl``` command is the primary tool to manage ```systemd```. It combines the functionality of SysVinit’s ```service``` and chkconfig commands into a single tool you can use to enable and disable services permanently or only for the current session.
+The `systemctl` command is the primary tool to manage `systemd`. It combines the functionality of SysVinit’s `service` and chkconfig commands into a single tool you can use to enable and disable services permanently or only for the current session.
 
 To setup geth node in service you need follow these step:
 1. Fristly, you have to copy ```geth``` to  ```/usr/local/bin/geth``` to avoid the permission error when use geth in service
@@ -97,7 +97,7 @@ To setup geth node in service you need follow these step:
 ```sh
 $ sudo cp ~/go/bin/geth /usr/local/bin/geth
 ```
-2. Next, you have to create a service file and move its to `/usr/lib/systemd/system`. In this repo, we have 4 node, so we create 4 service files for each node.
+2. Next, you have to create a [service file](services/geth-bootnode.service) and move its to `/usr/lib/systemd/system`. In this repo, we have 4 node, so we create 4 service files for each node.
 ```sh
 $ make install
 ```
