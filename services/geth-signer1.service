@@ -9,7 +9,7 @@ Type=simple
 EnvironmentFile=/usr/lib/systemd/system/geth.env
 
 ExecStart= /usr/local/bin/geth \
-        --verbosity 2 \
+        --verbosity 3 \
         --datadir ${WORK_DIR}/node-2 \
         --networkid ${NET_ID} \
         --unlock ${ADDR_2} --password ${WORK_DIR}/node-2/password.txt \

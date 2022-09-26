@@ -9,7 +9,7 @@ EnvironmentFile=/usr/lib/systemd/system/geth.env
 Type=simple
 
 ExecStart=/usr/local/bin/geth \
-    --verbosity 2 \
+    --verbosity 3 \
     --datadir ${WORK_DIR}/node-1 \
     --networkid ${NET_ID} \
     --nodekey ${WORK_DIR}/node-1/boot.key \
