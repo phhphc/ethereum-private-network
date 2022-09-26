@@ -1,0 +1,61 @@
+{
+  "config": {
+    "chainId": 58645,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "clique": {
+      "period": 6,
+      "epoch": 30000
+    }
+  },
+  "nonce": "0x0",
+  "timestamp": "0x631ef14a",
+  "extraData": "0x000000000000000000000000000000000000000000000000000000000000000040f922b761f27a8fc38bd26e33af795930aee7a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "gasLimit": "0x47b760",
+  "difficulty": "0x1",
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "alloc": {
+    "03b6a3df5464aa5ea0a332be96572bc1337b851e": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "160edc0b645ebc3354575cc310736e7c5026c572": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "2247bc77a8777326230aadc1f11add399cc52bc9": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "2adef4022acd11a9b8c1bd49e40134688063667d": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "3c109efe966962d051e0dfc3e3edaf24ca8e9ead": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "40f922b761f27a8fc38bd26e33af795930aee7a0": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "856a08ffc8f38f31748be2e0fb4aeb50476385d4": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "95f85b9a97f1d36376259d0c63f9cd4ca009e0e1": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "97f8c83e0d4eb5c8305bfcb14f33d37eaf0c6428": {
+      "balance": "0xad78ebc5ac6200000"
+    },
+    "e1d2ccc364e407169906c376f69743d1b76f4871": {
+      "balance": "0xad78ebc5ac6200000"
+    }
+  },
+  "number": "0x0",
+  "gasUsed": "0x0",
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "baseFeePerGas": null
+}
