@@ -17,15 +17,20 @@ clean:
 	rm -rf node-1/geth
 	rm -rf node-2/geth
 	
-	rm node-1/static-nodes.json
+	rm node-2/static-nodes.json
 
-init-1: $(POA_FILE)
+# sudo cp ~/go/bin/geth /usr/local/bin/geth
+init-net-1: $(POA_FILE)
 	geth init --datadir node-1 $(GENESIS_FILE_1)      
-	geth init --datadir node-2 $(GENESIS_FILE_1)      
+	geth init --datadir node-2 $(GENESIS_FILE_1)    
 
-init-2: $(POW_FILE)
+# sudo cp ~/Server3/go-ethereum/build/bin/geth
+# sudo cp ~/Server4/go-ethereum/build/bin/geth
+init-net-2: $(POW_FILE)
 	geth init --datadir node-1 $(GENESIS_FILE_2)  
 	geth init --datadir node-2 $(GENESIS_FILE_2)
+
+
 
 node-2/static-nodes.json:
 	echo ["enode://$(BOOTNODE_PUBKEY)@$(BOOTNODE_IP):30303"] > node-2/static-nodes.json
@@ -57,3 +62,13 @@ install: /usr/local/bin/geth geth-env
 	sudo cp $(GETH_ENV_FILE) $(INSTALL_DIR)
 	sudo cp services/geth-signer.service $(INSTALL_DIR)
 	sudo cp services/geth-member.service $(INSTALL_DIR)
+
+apply-signer:
+	sudo systemctl daemon-reload
+	sudo systemctl start geth-signer.service
+	sudo systemctl status geth-signer.service
+
+apply-member:
+	sudo systemctl daemon-reload
+	sudo systemctl start geth-member.service
+	sudo systemctl status geth-member.service
