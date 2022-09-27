@@ -28,7 +28,7 @@ init-2: $(POW_FILE)
 	geth init --datadir node-2 $(GENESIS_FILE_2)
 
 node-2/static-nodes.json:
-	echo [\"enode://$(BOOTNODE_PUBKEY)@$(BOOTNODE_IP):30303\"] > node-2/static-nodes.json
+	echo ["enode://$(BOOTNODE_PUBKEY)@$(BOOTNODE_IP):30303"] > node-2/static-nodes.json
 
 geth-env:
 	echo "WORK_DIR=$(shell pwd)" > $(GETH_ENV_FILE)
