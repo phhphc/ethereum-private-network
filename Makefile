@@ -78,9 +78,9 @@ apply-member:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-member.service
 	sudo systemctl status geth-member.service
-stop-signer:
+stop-member:
 	sudo systemctl stop geth-member.service
-log-signer:
+log-member:
 	sudo journalctl -u geth-member.service -f
 
 
