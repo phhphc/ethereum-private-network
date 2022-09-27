@@ -63,12 +63,24 @@ install: /usr/local/bin/geth geth-env
 	sudo cp services/geth-signer.service $(INSTALL_DIR)
 	sudo cp services/geth-member.service $(INSTALL_DIR)
 
+#signer command
 apply-signer:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-signer.service
 	sudo systemctl status geth-signer.service
+stop-signer:
+	sudo systemctl stop geth-signer.service
+log-signer:
+	sudo journalctl -u geth-signer.service -f
 
+#member command
 apply-member:
 	sudo systemctl daemon-reload
 	sudo systemctl start geth-member.service
 	sudo systemctl status geth-member.service
+stop-signer:
+	sudo systemctl stop geth-member.service
+log-signer:
+	sudo journalctl -u geth-member.service -f
+
+
